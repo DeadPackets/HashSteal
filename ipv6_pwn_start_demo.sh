@@ -23,7 +23,7 @@ P4wnP1_cli led -b 1
 echo "[+] Tools now running"
 
 # Now we wait for a victim user to connect, so we keep running the Dumper command every second
-echo "[+} Waiting for hash..."
+echo "[+] Waiting for hash..."
 loop=1
 while [ $loop ]; do
 	# Run the Dumper command
